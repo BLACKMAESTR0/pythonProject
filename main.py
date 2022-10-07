@@ -3,11 +3,11 @@ from bs4 import BeautifulSoup
 import json
 import time
 def get_data():
-    slov={'П':'P','а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'yo','ж':'j','з':'z','и':'i','й':'yo','к':'k','л':'l','м':'m','н':'n','о':'o','п':'p','р':'r','c':'s','т':'t','у':'u','ф':'f','х':'h','ц':'c','ч':'ch','ш':'sh','щ':'sh','ъ':' ','ы':'i','ь':' ','э':'e','ю':'iu','я':'ya'}
+    slov={'А':'A','Б':'B','В':'V','Г':'G','Д':'D','Е':'E','Ё':'YO','Ж':'J','З':'Z','И':'I','Й':'YO','К':'K','Л':'L','М':'M','Н':'N','О':'O','П':'P','Р':'R','С':'S','Т':'T','У':'U','Ф':'F','Х':'H','Ц':'C','Ч':'CH','Ш':'SH','Щ':'SH','Ъ':' ','Ы':'I','Ь':' ','Э':'E','Ю':'IU','Я':'YA','а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'yo','ж':'j','з':'z','и':'i','й':'yo','к':'k','л':'l','м':'m','н':'n','о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'h','ц':'c','ч':'ch','ш':'sh','щ':'sh','ъ':'*','ы':'i','ь':'*','э':'e','ю':'iu','я':'ya',' ':' '}
     headers = {'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
                'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
                }
-    url = 'https://www.labirint.ru/genres/2308/'
+    url = 'https://www.labirint.ru/genres/2309/'
     response=requests.get(url=url,headers=headers)
     soup=BeautifulSoup(response.text,'lxml')
     pages_count=int(soup.find('div', class_="pagination-number").find_all('a')[-1].text)
@@ -16,6 +16,7 @@ def get_data():
     genre=url.split('/')[-2]
     books=[]
     genre=soup.find('h1',class_='genre-name').text.strip()
+    print(genre)
     genreeng=''
     for i in range(len(genre)):
         bukv=slov[genre[i]]
